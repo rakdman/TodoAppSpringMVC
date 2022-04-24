@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="container d-flex flex-column min-vh-100">
+<div th:fragment="header">
+    <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <br lang="en">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <title>Todo App</title>
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#33b5e5;">
+        <a class="navbar-brand" href="/"><h4>Todo App</h4></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" th:href="@{/registration}">Register<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" th:href="@{/contact}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer" class="mt-auto">
+    <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <center>@Copy Right Demo Project of Todo Application</center>
+    <br>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body class="container d-flex flex-column min-vh-100">
+<div th:replace="fragments :: header"></div>
+<div class="jumbotron float-md-center ">
+    <div class="form-group offset-3 float-md-center">
+        <form action="" th:action="@{/saveuser}" th:object="${userEntity}" method="post">
+            <div class="form-group">
+                <div class="mb-6 row">
+                    <div class="col-sm-7 mb-2">
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                               placeholder="First Name">
+                    </div>
+                </div>
+                <div class="mb-6 row">
+                    <div class="col-sm-7 mb-2">
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="mb-6 row">
+                    <div class="col-sm-7 mb-2">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="mb-6 row">
+                    <div class="col-sm-7 mb-2">
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7 mb-2">
+                <button type="reset" class="btn btn-secondary float-right mb-2 btn-sm">Reset</button>
+                <button type="submit" class="btn btn-success float-right mb-2 mr-2 btn-sm">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

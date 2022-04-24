@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="todocss.css">
+</head>
+<body class="container d-flex flex-column min-vh-100">
+<div th:replace="fragments :: header"></div>
+
+<div class="jumbotron float-md-center">
+    <form th:action="@{/savetodo}" th:object="${todos}" method="POST" >
+
+        <div class="form-group offset-1 float-md-center">
+
+            <div class="form-group">
+                <div class="mb-6 row">
+<!--                    <label for="title" class="col-sm-2 col-form-label">Title</label>-->
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+<!--                        <input type="text"  th:value="${todos[0].title}"  class="form-control col-4 mb-4"  />-->
+                    </div>
+                </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="description" class="col-sm-2 col-form-label">Description</label>-->
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                    </div>
+                </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="updateDate" class="col-sm-2 col-form-label">Target Date</label>-->
+                    <div class="col-sm-7">
+                        <input type="datetime-local" class="form-control" id="updateDate" name="updateDate" placeholder="Target Date">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="btn btn-success btn-sm">Add</button>
+            <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+        </div>
+    </form>
+    <hr/>
+    <div th:if="${todos!=null}">
+    <table class="table table-bordered table-striped table-responsive-sm" id="employeeTable">
+        <thead class="table-primary">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th>Target Date</th>
+            <th>Created Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+<!--               <tr th:each="todos: ${todos}" class="table-info">-->
+               <tr th:each="todos: ${todos}">
+                    <td th:text="${todos.title}"></td>
+                    <td th:text="${todos.description}"></td>
+                    <td th:text="${todos.status}"></td>
+    <!--                <td th:text="${todos.updateDate}"></td>-->
+                       <td th:text="${#dates.format(todos.updateDate, 'dd-MM-yyyy HH:mm a')}"></td>
+                    <td th:text="${todos.createDate}"></td>
+                    <td>
+<!--                        <button type="submit" class="btn btn-primary">Update</button>-->
+                        <a th:href="@{/updateTodo(id=${todos.id})}" class="btn btn-primary btn-sm">Update</a>
+                        <a th:href="@{/deleteTodo(id=${todos.id})}" class="btn btn-danger btn-sm">Delete</a>
+
+<!--                        <button type="submit" class="btn btn-danger">Delete</button>-->
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    </div>
+    <div th:if="${todos==null}">
+        <p>No todos found!</p>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+<script>
+			$(document).ready(function() {
+				$("#employeeTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+</head>
+<body class="container d-flex flex-column min-vh-100" >
+
+<div th:replace="fragments :: header"></div>
+
+ <div class="jumbotron float-md-center ">
+  <form  th:action="@{/savetodo}" th:object="${todos}" method="POST" >
+<!--<form>-->
+        <div class="form-group offset-3">
+<!--      <div class="form-group float-md-left offset-1">-->
+            <div class="form-group">
+                    <div class="mb-6 row">
+<!--                        <label for="fullName" class="col-md-3 col-form-label">Full Name</label>-->
+                        <div class="col-sm-7 mb-2">
+                            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name">
+                        </div>
+                    </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="email" class="col-md-3 col-form-label">Your Email</label>-->
+                    <div class="col-sm-7 mb-2">
+                        <input type="text" class="form-control" id="email" name="email"  placeholder="Your Email">
+                    </div>
+                </div>
+
+                        <div class="mb-6 row ">
+<!--                            <label for="message" class="col-md-3 col-form-label">Message</label>-->
+                            <div class="col-sm-7 mb-2">
+                                <input type="text" class="form-control" id="message" name="message"  placeholder="Message">
+                            </div>
+                        </div>
+
+            </div>
+            <div class="col-sm-7 mb-2">
+                 <a th:href="@{/}" class="btn btn-secondary float-right ">Close</a>
+                  <button type="reset" class="btn btn-secondary float-right mr-2">Reset</button>
+                  <button type="submit" class="btn btn-success float-right mr-2">Send Email</button>
+            </div>
+        </div>
+  </form>
+
+</div>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

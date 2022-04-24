@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+</head>
+
+<body class="container d-flex flex-column min-vh-100">
+<div th:replace="fragments :: header"></div>
+<div class="jumbotron float-md-center ">
+<!--<div class="jumbotron col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">-->
+<!--    <form  action="" th:action="@{/registration}" th:object="${userEntity}" method="get" >-->
+        <form  action="" th:action="@{/login}"  method="get" >
+        <!--<form>-->
+            <div class="form-group offset-3">
+
+
+                <div class="mb-6 row">
+<!--                    <label for="userName" class="col-sm-3 col-form-label">User Name</label>-->
+                    <div class="col-sm-7 mb-2">
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="password" class="col-sm-3 col-form-label">Password</label>-->
+                    <div class="col-sm-7 mb-2">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="col-sm-7 mb-2">
+                        <button type="submit" class="btn btn-success float-right">Login</button>
+                </div>
+
+            </div>
+
+    </form>
+</div>
+</div>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

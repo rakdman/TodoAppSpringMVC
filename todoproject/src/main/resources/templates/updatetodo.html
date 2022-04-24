@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body class="container d-flex flex-column min-vh-100">
+<div th:replace="fragments :: header"></div>
+
+<div class="jumbotron float-md-center ">
+    <form th:action="@{/savetodo}" th:object="${todos}" method="POST">
+
+        <div class="form-group offset-1 float-md-center">
+
+            <div class="form-group">
+                <div class="mb-6 row">
+<!--                    <label for="title" class="col-sm-2 col-form-label">Title</label>-->
+                    <div class="col-sm-7">
+                        <input type="text"  th:value="${todos.title}" class="form-control" id="title" name="title" placeholder="Title">
+<!--                        <input type="text"  th:value="${todos[0].title}"  class="form-control col-4 mb-4"  />-->
+                    </div>
+                </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="description" class="col-sm-2 col-form-label">Description</label>-->
+                    <div class="col-sm-7">
+                        <input type="text"  th:value="${todos.description}" class="form-control" id="description" name="description" placeholder="Description">
+                    </div>
+                </div>
+
+                <div class="mb-6 row">
+<!--                    <label for="updateDate" class="col-sm-2 col-form-label">Target Date</label>-->
+                    <div class="col-sm-7">
+                        <input type="datetime-local"  th:value="${todos.updateDate}" class="form-control" id="updateDate" name="updateDate" placeholder="Target Date">
+                    </div>
+                </div>
+                <input type="hidden" th:value="${todos.id}"  id="id" name="id" >
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+            <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+        </div>
+    </form>
+    <hr/>
+</div>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>
