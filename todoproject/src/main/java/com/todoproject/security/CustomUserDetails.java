@@ -1,8 +1,8 @@
 package com.todoproject.security;
 
+import com.todoproject.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
@@ -11,18 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-/**
- * This class implements the userDetails interface for web security
- *
- * @author Rakesh Kumar
- */
 public class CustomUserDetails implements UserDetails {
 
     String username;
     String password;
     Boolean active;
     List<GrantedAuthority> authrities;
-    String[] roles = new String[]{"ROLE_ADMIN"};
+    String[] roles = new String[]{"ROLE_ADMIN","ROLE_USER"};
 
     public CustomUserDetails(User user) {
         this.username = user.getUsername();

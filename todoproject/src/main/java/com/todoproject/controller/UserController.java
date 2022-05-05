@@ -2,6 +2,7 @@ package com.todoproject.controller;
 
 
 import com.todoproject.model.User;
+import com.todoproject.repository.TodoRepository;
 import com.todoproject.repository.UserRepository;
 import com.todoproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    TodoRepository todoRepository;
+
     @GetMapping("/registration")
     public String inputRegistrationForm() {
         return "registration";
@@ -42,14 +46,21 @@ public class UserController {
         return "contact";
     }
 
-    @GetMapping("/")
-    public String loginForm() {
-        return "index";
+//    @GetMapping("/login")
+//    public String loginForm() {
+//        return "loginform";
+//    }
+//
+    @GetMapping("/login")
+    public ModelAndView login() {
+        ModelAndView mv = new ModelAndView("todoactions");
+        mv.addObject("todos", todoRepository.findAll());
+        return mv;
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "todoactions";
+    @GetMapping({"/"})
+    public String loginform() {
+        return "loginform";
     }
 
     PasswordEncoder passwordEncoder;
@@ -63,7 +74,7 @@ public class UserController {
         passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(userEntity.getPassword());
         userEntity.setPassword(encodedPassword);
-
+        System.out.println("Registering user:"+userEntity);
         userRepository.save(userEntity);
         return "redirect:/login";
     }

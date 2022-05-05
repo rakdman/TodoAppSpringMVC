@@ -2,15 +2,21 @@ package com.todoproject.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
+@Configuration
 @EnableWebSecurity
 public class CustomSecurity extends WebSecurityConfigurerAdapter {
 
@@ -20,51 +26,36 @@ public class CustomSecurity extends WebSecurityConfigurerAdapter {
 
 
     @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .cors().and().csrf().disable().authorizeRequests()
+                .antMatchers("/getalltodo","/registration").authenticated()
+//                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-//Disabled endpoints security is for future use, if we adapt our fitter app to send the api requests with authorization in the header.
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .cors().and().csrf().disable().authorizeRequests()
-//					.antMatchers("/login").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/getoneuser").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/getoneuser").permitAll()
-//					.antMatchers("/getallusers").hasRole("ADMIN")
-//					.antMatchers("/deleteuser").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/updateuser").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/uploadimage").hasAnyRole("USER", "ADMIN")
-//          		.antMatchers("/register").hasRole("USER")
-//					.antMatchers("/getonevoucher").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/getallvouchers").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/purchasevoucher").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/getuservoucherhistory").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/uploadvoucherimage").hasAnyRole("USER", "ADMIN")
-//					.antMatchers("/deletevoucher").hasAnyRole("ADMIN")
-//					.antMatchers("/createvoucher").hasAnyRole("ADMIN")
-
-//                .antMatchers("/loadvoucherfile").hasAnyRole("ADMIN")
-//                .antMatchers("/getoneuser").permitAll()
-//                .antMatchers("/getallusers").permitAll()
-//                .antMatchers("/deleteuser").permitAll()
-//                .antMatchers("/updateuser").permitAll()
-//                .antMatchers("/updateuser2").permitAll()
-//                .antMatchers("/uploadimage").permitAll()
-//                .antMatchers("/getonevoucher").permitAll()
-//                .antMatchers("/getallvouchers").permitAll()
-//                .antMatchers("/purchasevoucher").permitAll()
-//                .antMatchers("/getuservoucherhistory").permitAll()
-//                .antMatchers("/uploadvoucherimage").permitAll()
-//                .antMatchers("/deletevoucher").permitAll()
-//                .antMatchers("/createvoucher").permitAll()
-//                .antMatchers("/register").permitAll()
-                .antMatchers("/getalltodo").permitAll()
-                .and()
-                .formLogin();
-    }
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+//        auth.setUserDetailsService(userDetailsService);
+//        auth.setPasswordEncoder(passwordEncoder());
+//        return auth;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

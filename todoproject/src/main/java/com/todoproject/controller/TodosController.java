@@ -41,6 +41,7 @@ public class TodosController {
         todos.setCreateDate(formatter.format(currentDate));
         System.out.println(todos.getUpdateDate());
         todoRepository.save(todos);
+        System.out.println("Exiting savetodo method");
         return "redirect:/getalltodo";
     }
 

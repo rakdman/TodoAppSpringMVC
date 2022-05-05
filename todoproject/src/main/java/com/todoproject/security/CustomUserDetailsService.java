@@ -28,13 +28,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 //        return null;
 //    }
 
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-         User user = userRepo.findByEmail(userName).get();
+        Optional<User> user = userRepo.findByUsername(userName);
         if (user == null)
             throw new UsernameNotFoundException(userName);
-//        return  user.map(CustomUserDetails::new).get();
-        return (UserDetails) user;
+        return user.map(CustomUserDetails::new).get();
     }
 
 }

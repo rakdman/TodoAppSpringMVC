@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 <div class="jumbotron float-md-center ">
 <!--<div class="jumbotron col-lg-6 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center">-->
 <!--    <form  action="" th:action="@{/registration}" th:object="${userEntity}" method="get" >-->
-        <form  action="" th:action="@{/login}"  method="get" >
+        <form  action="" th:action="@{/login}"  method="GET" >
         <!--<form>-->
             <div class="form-group offset-3">
 
@@ -21,7 +21,7 @@
                 <div class="mb-6 row">
 <!--                    <label for="userName" class="col-sm-3 col-form-label">User Name</label>-->
                     <div class="col-sm-7 mb-2">
-                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Email">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                     </div>
                 </div>
 

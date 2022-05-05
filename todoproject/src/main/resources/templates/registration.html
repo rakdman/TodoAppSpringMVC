@@ -9,7 +9,7 @@
 <div th:replace="fragments :: header"></div>
 <div class="jumbotron float-md-center ">
     <div class="form-group offset-3 float-md-center">
-        <form action="" th:action="@{/saveuser}" th:object="${userEntity}" method="post">
+        <form th:action="@{/saveuser}" th:object="${userEntity}" method="POST">
             <div class="form-group">
                 <div class="mb-6 row">
                     <div class="col-sm-7 mb-2">
