@@ -44,6 +44,8 @@
     </form>
     <hr/>
     <div th:if="${todos!=null}">
+
+
     <table class="table table-bordered table-striped table-responsive-sm" id="employeeTable">
         <thead class="table-primary">
         <tr>
@@ -69,6 +71,7 @@
 <!--                        <button type="submit" class="btn btn-primary">Update</button>-->
                         <a th:href="@{/updateTodo(id=${todos.id})}" class="btn btn-primary btn-sm">Update</a>
                         <a th:href="@{/deleteTodo(id=${todos.id})}" class="btn btn-danger btn-sm">Delete</a>
+
 
 <!--                        <button type="submit" class="btn btn-danger">Delete</button>-->
                     </td>

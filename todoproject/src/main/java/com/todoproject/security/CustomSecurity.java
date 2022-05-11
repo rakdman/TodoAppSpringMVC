@@ -25,41 +25,49 @@ public class CustomSecurity extends WebSecurityConfigurerAdapter {
     private CustomUserDetailsService userDetailsService;
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/getalltodo","/registration").authenticated()
-//                .antMatchers("/**").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-//        auth.setUserDetailsService(userDetailsService);
-//        auth.setPasswordEncoder(passwordEncoder());
-//        return auth;
-//    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+//                .antMatchers("/**").permitAll()
+                .antMatchers("/registration","/contact","/saveuser").permitAll()
+                .antMatchers("/","/getalltodo","/savetodo","/updateTodo").hasAnyRole("USER","ADMIN")
+                .antMatchers("/deleteUser","/deleteTodo").hasAnyRole("ADMIN")
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessdenied")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
+    }
+
+
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(this.userDetailsService);
+
+        return daoAuthenticationProvider;
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
 }

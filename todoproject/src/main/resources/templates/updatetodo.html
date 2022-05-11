@@ -30,7 +30,8 @@
                 <div class="mb-6 row">
 <!--                    <label for="updateDate" class="col-sm-2 col-form-label">Target Date</label>-->
                     <div class="col-sm-7">
-                        <input type="datetime-local"  th:value="${todos.updateDate}" class="form-control" id="updateDate" name="updateDate" placeholder="Target Date">
+<!--                        <input type="datetime-local"  th:value="${todos.updateDate}" class="form-control" id="updateDate" name="updateDate" placeholder="Target Date">-->
+                        <input type="datetime-local"  th:value="${#dates.format(todos.updateDate, 'dd-MM-yyyy HH:mm a')}" class="form-control" id="updateDate" name="updateDate" placeholder="Target Date">
                     </div>
                 </div>
                 <input type="hidden" th:value="${todos.id}"  id="id" name="id" >
