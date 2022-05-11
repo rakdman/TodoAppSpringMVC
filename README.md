@@ -2,7 +2,7 @@
 This project is to create, update, view and delete ToDos. 
 
 Technologies Used are:
-SpringMVC, Thymeleaf, SpringSecurity and MYSQL
+SpringMVC, Thymeleaf, SpringSecurity-form based and MYSQL
 
 
 Registration:
