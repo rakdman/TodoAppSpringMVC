@@ -9,13 +9,13 @@ Registration:
 
 ![image](https://user-images.githubusercontent.com/59464659/166929562-0c28fd29-e566-464a-8a5e-cedd608597ea.png)
 
-Login with Incorrect credentials:
-
-![image](https://user-images.githubusercontent.com/59464659/167926067-587ecec9-9831-4c72-aa91-3a8a81ac1a01.png)
-
 Login:
 
 ![image](https://user-images.githubusercontent.com/59464659/166929639-c99d044f-97b0-43d3-a88c-f7e181d714ca.png)
+
+Login with Incorrect credentials:
+
+![image](https://user-images.githubusercontent.com/59464659/167926067-587ecec9-9831-4c72-aa91-3a8a81ac1a01.png)
 
 Home Page:
 
