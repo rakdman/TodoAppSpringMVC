@@ -5,6 +5,7 @@ Technologies Used are:
 SpringMVC, Thymeleaf, SpringSecurity-form based and MYSQL
 
 It is deployed on Heroku and can be access at following URL:
+http://todoapplicationspringboot.herokuapp.com/
 
 UserName:sa
 Password:12345
