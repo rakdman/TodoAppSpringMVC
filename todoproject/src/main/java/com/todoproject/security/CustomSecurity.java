@@ -13,7 +13,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.servlet.http.Cookie;
 
 
 @Configuration
@@ -35,11 +38,18 @@ public class CustomSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        Cookie cookie = new Cookie("JSESSIONID",null);
+        cookie.setMaxAge(0);
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/login/");
+
+        CookieClearingLogoutHandler cookieClearingLogoutHandler = new CookieClearingLogoutHandler(cookie);
+        http.csrf().disable().authorizeRequests()
 //                .antMatchers("/**").permitAll()
                 .antMatchers("/registration","/contact","/saveuser").permitAll()
-                .antMatchers("/","/getalltodo","/savetodo","/updateTodo").hasAnyRole("USER","ADMIN")
-                .antMatchers("/deleteUser","/deleteTodo").hasAnyRole("ADMIN")
+                .antMatchers("/","/getalltodo","/savetodo","/updateTodo", "/deleteTodo").hasAnyRole("USER","ADMIN")
+                .antMatchers("/deleteUser").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -47,9 +57,10 @@ public class CustomSecurity extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/accessdenied")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);
+                .addLogoutHandler(cookieClearingLogoutHandler);
+//                .logoutSuccessUrl("/")
+//                .deleteCookies()
+//                .invalidateHttpSession(true);
     }
 
 
