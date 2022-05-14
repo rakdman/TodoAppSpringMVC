@@ -4,6 +4,11 @@ This project is to create, update, view and delete ToDos.
 Technologies Used are:
 SpringMVC, Thymeleaf, SpringSecurity-form based and MYSQL
 
+It is deployed on Heroku and can be access at following URL:
+
+UserName:sa
+Password:12345
+
 
 Registration:
 
