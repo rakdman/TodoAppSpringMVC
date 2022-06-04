@@ -1,7 +1,7 @@
 # TodoAppSpringMVC
 This project is to create, update, view and delete ToDos. Through the contact form it will send email as well.
 
-Technologies Used are:
+Technologies used:
 SpringMVC, Thymeleaf, SpringSecurity-form based and Postgresql
 It is deployed on Heroku Server.
 
