@@ -8,6 +8,8 @@ It is deployed on Heroku Server.
 It is deployed on Heroku and can be access at following URL:
 http://todoapplicationspringboot.herokuapp.com/
 
+Note: It is deployed freely on Heroku, so loading it first time may take a bit of time.
+
 UserName:sa
 Password:12345
 
