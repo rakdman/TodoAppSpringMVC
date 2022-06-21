@@ -26,7 +26,7 @@ Login with Incorrect credentials:
 
 ![image](https://user-images.githubusercontent.com/59464659/167926067-587ecec9-9831-4c72-aa91-3a8a81ac1a01.png)
 
-Home Page:
+ Home Page:
 
 ![image](https://user-images.githubusercontent.com/59464659/167926916-ddf766bc-d88d-4386-84d1-8e30c31c1460.png)
 
