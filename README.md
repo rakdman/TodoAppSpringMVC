@@ -13,6 +13,8 @@ Note: It is deployed freely on Heroku, so loading it first time may take a bit o
 UserName:sa
 Password:12345
 
+Note: It not accessible on HerokuApp now.
+
 
 Registration:
 
